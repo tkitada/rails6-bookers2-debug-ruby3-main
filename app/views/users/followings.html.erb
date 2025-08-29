@@ -1,0 +1,6 @@
+<h2>Follow Users</h2>
+<% if @users.empty? %>
+  <p>ユーザーはいません</p>
+<% else %>
+  <%= render partial: "userlist", locals: {users: @users} %>
+<% end %>
