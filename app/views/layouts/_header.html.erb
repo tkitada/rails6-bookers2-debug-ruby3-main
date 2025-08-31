@@ -54,4 +54,23 @@
       </div>
     </div>
   </nav>
+  <% if user_signed_in? %>
+    <div class="bg-light py-2">
+      <div class="container">
+        <%= form_with url: search_path, method: :get, local: true, class: "form-inline justify-content-center" do |f| %>
+          <div class="form-group mr-2">
+            <%= f.select :range, [["User"], ["Book"]], {}, class: "form-control" %>
+          </div>
+          <div class="form-group mr-2">
+            <%= f.select :search_type, [["完全一致", "perfect"], ["前方一致", "forward"], ["後方一致", "backward"], ["部分一致", "partial"]], {}, class: "form-control" %>
+          </div>
+          <div class="form-group mr-2">
+            <%= f.text_field :word, placeholder: "キーワード", class: "form-control" %>
+          </div>
+          <div class="for-group">
+            <%= f.submit "検索", class: "btn btn-primary" %>
+          </div>
+        <% end %>
+      </div>
+    <% end %>
 </header>
