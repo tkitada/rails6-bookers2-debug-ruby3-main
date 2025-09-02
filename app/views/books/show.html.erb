@@ -18,27 +18,22 @@
           </td>
           <td><%= link_to @book.title, @book %></td>
           <td><%= @book.body %></td>
-          <td>
-            <div id="favorite-btn-<%= @book.id %>">
-              <%= render 'favorites/favorite-btn', book: @book %>
-            </div>
-          </td>
+          <td id="favorite-btn-<%= @book.id %>"><%= render 'favorites/favorite-btn', book: @book %></td>
+          <td class="comments-count">コメント数：<%= @book.book_comments.count %></td>
+          
           <% if @book.user == current_user %>
             <td><%= link_to 'Edit', edit_book_path(@book), class: "btn btn-sm btn-success" %></td>
             <td><%= link_to 'Destroy', book_path(@book), method: :delete, data: { confirm: '本当に消しますか？' }, class: "btn btn-sm btn-danger"%></td>
           <% end %>
-          <td>コメント数：<%= @book.book_comments.count %></td>
         </tr>
-        <div id="comment-list">
-          <%= render partial: 'book_comments/book_comments', locals: { book: @book } %> 
-        </div>                   
       </table>
-      <div>
-        <%= form_with model: [@book, @book_comment], remote: true, local: false do |f| %>
-          <%= f.text_area :comment, rows: '5' %>
-          <%= f.submit "送信" %>
-        <% end %>
-      </div>
+      <table id="comment-list">       
+        <%= render partial: 'book_comments/book_comments', locals: { book: @book } %> 
+      </table>                   
+      <%= form_with model: [@book, @book_comment], remote: true, local: false do |f| %>
+        <%= f.text_area :comment, size:"90x5" %>
+        <%= f.submit "送信" %>
+      <% end %>
     </div>
   </div>
 </div>
