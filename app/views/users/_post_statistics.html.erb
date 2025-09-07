@@ -1,0 +1,42 @@
+<h2 class="mt-5 mb-4">投稿数の前日比・前週比</h2>
+
+<div class="row">
+  <div class="col-md-6">
+    <table class="table table-bordered text-center">
+      <thead class="table-light">
+        <tr>
+          <th>今日の投稿数</th>
+          <th>前日の投稿数</th>
+          <th>前日比</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><%= @user.today_book_count %></td>
+          <td><%= @user.yesterday_book_count %></td>
+          <td><%= @user.previous_day_ratio %></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="col-md-6">
+    <table class="table table-bordered text-center">
+      <thead class="table-light">
+        <tr>
+          <th>今週の投稿数</th>
+          <th>先週の投稿数</th>
+          <th>前週比</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><%= @user.this_week_book_count %></td>
+          <td><%= @user.last_week_book_count %></td>
+          <td>><%= @user.previous_week_ratio %></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+  
