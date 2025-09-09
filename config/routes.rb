@@ -19,6 +19,7 @@ Rails.application.routes.draw do
   #ユーザー関連
   resources :users, only: [:index,:show,:edit,:update] do
     resource :relationship, only: [:create, :destroy]
+    get "search" => "users#search"
 
     member do
       get :followings
