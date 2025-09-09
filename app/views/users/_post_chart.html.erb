@@ -1,0 +1,32 @@
+<h3>7日間の投稿数の比較</h3>
+<canvas id="booksChart" width="600" height="300"></canvas>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<script>
+  const ctx = document.getElementByID('booksChart').getContext('2d');
+  const booksChart = new Chart(ctx, {
+    type: 'line',
+    data: {
+      labels: <%= raw @daily_counts.map { |d| "\"#{d[:date]}\"" }.to_json %>,
+      datasets: [{
+        label: '投稿した本の数',
+        data: <%= raw @daily_counts.map { |d| d[:count] }.to_json %>,
+        borderColor: 'blue',
+        borderWidth: 2,
+        fill: false,
+        tension: 0.3,
+        pointRadius: 4,
+        pointBackgroundColor: 'blue'
+      }]
+    },
+    options: {
+      scales: {
+        y: {
+          beginAtZero: true,
+          stepSize: 1
+        }
+      }
+    } 
+  });
+</script>

@@ -9,6 +9,23 @@ class UsersController < ApplicationController
     @yesterday_book = @books.created_yesterday
     @this_week_book = @books.created_this_week
     @last_week_book = @books.created_last_week
+
+    @daily_counts = (6.day.ago.to_date..Date.today).map do |date|
+      label = case date
+        when Date.today then #今日
+        when 1.day.ago.to_date then #1日前
+        when 2.day.ago.to_date then
+        when 3.day.ago.to_date then
+        when 4.day.ago.to_date then
+        when 5.day.ago.to_date then
+        when 6.day.ago.to_date then
+        end
+      {
+        date: label,
+        count: @user.books.where(created_at: date.beginning_of_day..date.end_of_day).count
+      }
+    end
+
   end
 
   def index
